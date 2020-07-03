@@ -2,35 +2,30 @@
 layout: default
 title: D3.js Bar Chart using YAML and Jekyll
 ---
+<script src="//d3js.org/d3.v3.min.js"></script>
 
 <h3>D3.js Bar Chart Using YAML and Jekyll</h3>
 <div id="chart"></div>
 <style>
-
 /* Bar Chart */
 .bar {
-  fill: steelblue;
+  fill: purple;
 }
-
 .bar:hover {
-  fill: brown;
+  fill: red;
 }
-
 .axis {
-  font: 10px sans-serif;
+  font: 15px sans-serif;
 }
-
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
 .x.axis path {
   display: none;
 }
-
 </style>
 
 <script>

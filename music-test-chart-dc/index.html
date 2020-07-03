@@ -1,0 +1,59 @@
+---
+layout: default
+title: dc.js Bar Chart using YAML and Jekyll
+---
+<head>
+  <h3>dc.js Bar Chart Using YAML and Jekyll</h3>
+  <meta charset="UTF-8">
+  <!--<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../css/dc.css"/>-->
+  <script type="text/javascript" src="../js/d3.js"></script>
+  <script type="text/javascript" src="../js/crossfilter.js"></script>
+  <script type="text/javascript" src="../js/dc-4.0.0/dc.js"></script>
+</head>
+
+<style>
+  h3{
+    transform: translate(100px);
+  }
+  .container{
+    transform: translate(-100px);
+  }
+</style>
+
+<body>
+  <div class="container" id="test">
+
+  <script type="text/javascript">
+
+  var chart = new dc.BarChart("#test");
+  d3.json("/data/music-test-chart.json").then(function(data) {
+
+    /*data.forEach(function(x) {
+      x.freq = +x.freq;
+    });*/
+
+    var ndx                 = crossfilter(data),
+        dateDimension       = ndx.dimension(function(d) {return +d.date;}),
+        speedSumGroup       = dateDimension.group().reduceSum(function(d) {return d.freq;});// * d.date / 1000;});
+
+    chart
+      .width(768)
+      .height(480)
+      .x(d3.scaleLinear().domain([1970,2020]))
+      .brushOn(false)
+      .yAxisLabel("Frequency")
+      .dimension(dateDimension)
+      .group(speedSumGroup)
+      .on('renderlet', function(chart) {
+          chart.selectAll('rect').on("click", function(d) {
+              console.log("click!", d);
+          });
+      });
+      chart.render();
+  });
+
+  </script>
+
+  </div>
+</body>
