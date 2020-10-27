@@ -22,8 +22,8 @@ title: D3 Test Site
 email: helpme@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Help
-baseurl: "/rapm-project" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/rapm-project-website" # the subpath of your site, e.g. /blog
+url: "https://rapm-project.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username: jagr
 
